@@ -35,46 +35,51 @@ void Cache::setReject(bool reject_) {
 
 std::tuple<bool, int>  Cache::insert(Connection c) {
     bool exists = false;
+    int lookups = 0;
     
-    // fisrt check if cache full. If so check if reject selected 
-    if (cache.size() == max_connections && reject) {
-       std::cout << "[CACHE][INS]Cache Capacity Reached (" << max_connections << "). Rejected incoming connection." << std::endl;
-    }
-    else {
-        // check again and if reject is off, if so remove least frequent element by using lookup number
-        Connection min_conn;
-        int min = INT_MAX;
+    // check again and if reject is off, if so remove least frequent element by using lookup number
+    Connection min_conn;
+    int min = INT_MAX;
 
-        if (cache.size() == max_connections && !reject) {
-            for (const auto& c : cache) {
-                if (c.second < min) {
-                    min_conn = c.first;
-                    min = c.second;
-                }
+    if (cache.size() == max_connections && !reject) {
+        for (const auto& c : cache) {
+            if (c.second < min) {
+                min_conn = c.first;
+                min = c.second;
             }
-            cache.erase(min_conn);
         }
+        cache.erase(min_conn);
+    }
 
-        // Now add connection:
-        // check if connection present, if not insert to cache if it is increment lookup.
-        if (cache.find(c) == cache.end()) {
+    // Now add connection:
+    // check if connection present, if not insert to cache if it is increment lookup.
+    if (cache.find(c) == cache.end()) {
+        // check if cache full, reject if necessary.
+        if (cache.size() == max_connections && reject) {
+            std::cout << "[CACHE][INS]Cache Capacity Reached (" << max_connections << "). Rejected incoming connection." << std::endl;
+            lookups = 0;
+        }
+        else {
             cache.insert(std::pair<Connection, int>(c, 1));
             std::cout << "[Cache][INS]Adding connection: ";
             c.print();
             std::cout << ", lookups: " << cache[c] << std::endl;
         }
-
-        // connection found already
-        else {
-            cache[c] += 1;
-            std::cout << "[Cache][INS]Found Exisitng connection: ";
-            c.print();
-            std::cout << ", lookups: " << cache[c] << std::endl;
-            exists = true;
-        }
     }
 
-    return {exists, cache[c]};
+    // connection found already
+    else {
+        cache[c] += 1;
+        std::cout << "[Cache][INS]Found Exisitng connection: ";
+        c.print();
+        std::cout << ", lookups: " << cache[c] << std::endl;
+        exists = true;
+        lookups = cache[c];
+    }
+   
+    
+
+    return {exists, lookups};
 }
 
 std::tuple<bool, int,double> Cache::lookup(Connection c) {
