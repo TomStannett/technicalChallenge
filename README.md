@@ -10,7 +10,7 @@ IDE: Visual Studio 16.7.7
 * The reject flag in Cache allows one to either: reject incoming packets if a hard limit (max_connections) is reached -> true, or replace entry most infrequent lookup with new entry-> false.
 * I have coded the order of the rejection such that a new incoming connection still gets added to the lookup, if it exists already in the cache and if the cache is full. I did not know whether I intepreted the design docs correctly, as i took that to count as a lookup and for the iterator to increase. To make it so the iterator does not increase, the if statement can simply be moved above the execution block.
 * I have used a custom Socket class to act as a wrapper around boost::asio. To me this seems more extendable and readable.
-* Please find screenshots of results and UDI diagram in the images folder
+* Please find screenshots of results and UML diagram in the images folder
 
 
 
