@@ -2,7 +2,7 @@
 ## Code Challege 3 for DarkTrace
 
 Libraries used: bootx86 for windows. Version 1.73.0
-IDE: 16.7.7
+IDE: Visual Studio 16.7.7
 
 ### Notes
 * Each .hpp has a commented boilerplate at the top explaining the fields and methods of the associated class
