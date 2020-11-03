@@ -11,14 +11,11 @@ Socket::Socket() {
     port = 0;
 }
 
-Socket::Socket(boost::asio::ip::address ip_, int port_) {
-    ip = ip_;
-    port = port_;
+Socket::Socket(boost::asio::ip::address ip_, unsigned short port_) : ip(ip_), port(port_) {
 }
 
-Socket::Socket(std::string ip_, int port_) {  
+Socket::Socket(std::string ip_, unsigned short port_) : port(port_) {
     ip = boost::asio::ip::address::from_string(ip_);
-    port = port_;
 }
 
 
@@ -38,7 +35,7 @@ void Socket::setIP(boost::asio::ip::address ip_) {
     ip = ip_;
 }
 
-void Socket::setPort(int port_) {
+void Socket::setPort(unsigned short port_) {
     port = port_;
 }
 

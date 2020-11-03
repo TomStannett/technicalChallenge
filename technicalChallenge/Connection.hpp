@@ -38,8 +38,8 @@ public:
     // constructors
     Connection();
     Connection(Socket socket_1_, Socket socket_2_);
-    Connection(boost::asio::ip::address socket_1_ip, int socket_1_port, boost::asio::ip::address socket_2_ip, int socket_2_port);
-    Connection(std::string socket_1_ip, int socket_1_port, std::string socket_2_ip, int socket_2_port);
+    Connection(boost::asio::ip::address socket_1_ip, unsigned short socket_1_port, boost::asio::ip::address socket_2_ip, unsigned short socket_2_port);
+    Connection(std::string socket_1_ip, unsigned short socket_1_port, std::string socket_2_ip, unsigned short socket_2_port);
 
     // getters
     Socket getSocket1Address() const;

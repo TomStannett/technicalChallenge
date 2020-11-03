@@ -4,7 +4,7 @@
  * Fields
  *
  *  boost::asio::ip::address ip describes the ip address
- *  int port describes the port number
+ *  unsigned short port describes the port number, 16 bit unsigned integer
  * 
  * Methods
  * 
@@ -33,17 +33,17 @@
 class Socket {
 private:
     boost::asio::ip::address ip;
-    int port;
+    unsigned short port;
 public:
     Socket();
-    Socket(boost::asio::ip::address ip_, int port_);
-    Socket(std::string ip_, int port_);
+    Socket(boost::asio::ip::address ip_, unsigned short port_);
+    Socket(std::string ip_, unsigned short port_);
 
     boost::asio::ip::address* getIP();
     int getPort();
 
     void setIP(boost::asio::ip::address ip_);
-    void setPort(int port_);
+    void setPort(unsigned short port_);
 
     void print();
 

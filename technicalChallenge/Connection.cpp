@@ -10,19 +10,19 @@ Connection::Connection() {
 	socket_2 = Socket();
 }
 
-Connection::Connection(Socket src_, Socket dest_) {
-	socket_1 = src_;
-	socket_2 = dest_;
+Connection::Connection(Socket socket_1_, Socket socket_2_) {
+	socket_1 = socket_1_;
+	socket_2 = socket_2_;
 }
 
-Connection::Connection(boost::asio::ip::address src_ip, int src_port, boost::asio::ip::address dest_ip, int dest_port) {
-	socket_1 = Socket(src_ip, src_port);
-	socket_2 = Socket(dest_ip, dest_port);
+Connection::Connection(boost::asio::ip::address socket_1_ip, unsigned short socket_1_port, boost::asio::ip::address socket_2_ip, unsigned short socket_2_port) {
+	socket_1 = Socket(socket_1_ip, socket_1_port);
+	socket_2 = Socket(socket_2_ip, socket_2_port);
 }
 
-Connection::Connection(std::string src_ip, int src_port, std::string dest_ip, int dest_port) {
-	socket_1 = Socket(src_ip, src_port);
-	socket_2 = Socket(dest_ip, dest_port);
+Connection::Connection(std::string socket_1_ip, unsigned short socket_1_port, std::string socket_2_ip, unsigned short socket_2_port) {
+	socket_1 = Socket(socket_1_ip, socket_1_port);
+	socket_2 = Socket(socket_2_ip, socket_2_port);
 }
 
 
@@ -36,11 +36,11 @@ Socket Connection::getSocket2Address() const{
 }
 
 // setters
-void Connection::setSocket1Address(Socket src_) {
-	socket_1 = src_;
+void Connection::setSocket1Address(Socket socket_1_) {
+	socket_1 = socket_1_;
 }
-void Connection::setSocket2Address(Socket dest_) {
-	socket_2 = dest_;
+void Connection::setSocket2Address(Socket socket_2_) {
+	socket_2 = socket_2_;
 }
 
 void Connection::print(){

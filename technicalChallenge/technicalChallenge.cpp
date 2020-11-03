@@ -18,7 +18,7 @@ void cacheUnitTest() {
     Socket S4("192.168.9.4", 40);
 
     // instantiate cache w first insert
-    Cache cache(Connection(S1, S2));
+    Cache cache(Connection(S1, S2), 10, true);
 
     // instantiate lookup time test vector
     std::vector<double> lookup_times;
