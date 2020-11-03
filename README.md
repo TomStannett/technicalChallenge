@@ -6,7 +6,8 @@ IDE: Visual Studio 16.7.7
 
 ### Notes
 * Each .hpp has a commented boilerplate at the top explaining the fields and methods of the associated class
-* I used an unordered_map in the Cache class to store Connection Objects and their associated lookup counts. The Connection objs were used as they key value for the map, and as such required a custom hash generator function. The motivation for this is that .find() (used in lookup and insert) runs in O(1) time for a good hash function and O(n) worst case. 
+* I used an unordered_map in the Cache class to store Connection Objects and their associated lookup counts. The Connection objs were used as they key value for the map, and as such required a custom hash generator function. The motivation for this is that .find() (used in lookup and insert) runs in O(1) time for a good hash function and O(n) worst case.
+* The reject flag in Cache allows one to either: reject incoming packets if a hard limit (max_connections) is reached -> true, or replace entry with most infrequent lookup -> false.
 * Please find screenshots of results and UDI diagram in the images folder
 
 
